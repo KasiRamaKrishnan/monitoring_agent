@@ -26,10 +26,24 @@ RUN wget https://github.com/grafana/loki/releases/download/v2.9.4/loki-linux-amd
     mv loki-linux-amd64 /usr/local/bin/loki && \
     rm loki-linux-amd64.zip
 
+# Install Promtail
+RUN wget https://github.com/grafana/loki/releases/download/v2.9.4/promtail-linux-amd64.zip && \
+    unzip promtail-linux-amd64.zip && \
+    chmod +x promtail-linux-amd64 && \
+    mv promtail-linux-amd64 /usr/local/bin/promtail && \
+    rm promtail-linux-amd64.zip
+
+# Copy Promtail config
+COPY promtail-config.yaml /etc/promtail/promtail-config.yaml
+
+
 # Install Grafana Enterprise
 RUN wget https://dl.grafana.com/enterprise/release/grafana-enterprise_10.4.1_amd64.deb && \
     dpkg -i grafana-enterprise_10.4.1_amd64.deb && \
     rm grafana-enterprise_10.4.1_amd64.deb
+
+RUN sed -i 's|^;provisioning = .*|provisioning = /etc/grafana/provisioning|' /etc/grafana/grafana.ini
+
 
 # Copy configuration files
 COPY prometheus.yml /etc/prometheus/prometheus.yml
