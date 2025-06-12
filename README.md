@@ -1,9 +1,3 @@
-# monitoring_agent
-monitoring_agent
-
-Absolutely! Here's a **`README.md`** file you can include in your repository for your custom Docker-based monitoring agent. This guide covers building, running, and what the image contains.
-
----
 
 ## 🖥️ Monitoring Agent (Prometheus + Grafana + Loki + Promtail)
 
