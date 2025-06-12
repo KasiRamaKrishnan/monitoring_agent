@@ -6,3 +6,21 @@ providers:
     type: file
     options:
       path: /var/lib/grafana/dashboards
+
+  - name: 'loki-logs'
+    orgId: 1
+    folder: 'Loki'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
+
+  - name: 'node-exporter'
+    orgId: 1
+    folder: 'Node Exporter'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
