@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /opt/agent
 
 # Use alternative mirror to avoid archive.ubuntu.com issues
-RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|http://mirror.math.princeton.edu/pub/ubuntu/|g' /etc/apt/sources.list
+#RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|http://mirror.math.princeton.edu/pub/ubuntu/|g' /etc/apt/sources.list
 
 RUN mkdir -p /var/log/supervisor
 # Install dependencies, including missing ones for Grafana .deb
@@ -34,7 +34,8 @@ RUN wget https://dl.grafana.com/enterprise/release/grafana-enterprise_10.4.1_amd
 # Copy configuration files
 COPY prometheus.yml /etc/prometheus/prometheus.yml
 COPY loki-config.yaml /etc/loki/loki-config.yaml
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+
 COPY grafana/provisioning /etc/grafana/provisioning
 COPY grafana/dashboards /var/lib/grafana/dashboards
 
@@ -42,4 +43,5 @@ COPY grafana/dashboards /var/lib/grafana/dashboards
 EXPOSE 9090 3000 3100
 
 # Start all components using Supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
