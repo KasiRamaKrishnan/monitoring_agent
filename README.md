@@ -141,4 +141,3 @@ Feel free to open issues or submit pull requests to improve this monitoring stac
 
 ---
 
-Let me know if you'd like me to tailor this README for Docker Compose, Kubernetes, or include monitoring for Windows hosts as well.
