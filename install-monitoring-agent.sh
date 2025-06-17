@@ -9,7 +9,7 @@ docker build -t monitoring-agent-kasi .
 # --- Step 1: Run node_exporter on host to expose system metrics ---
 echo "[*] Running node_exporter container"
 docker run -d --restart=always \
-  --name node_exporter \
+  --name node_exporter_machine \
   -p 9100:9100 \
   quay.io/prometheus/node-exporter
 
@@ -32,7 +32,7 @@ EOF
 # --- Step 4: Run custom monitoring agent container ---
 echo "[*] Starting monitoring-agent container"
 docker run -d --restart=always \
-  --name monitor_agent \
+  --name monitor_agent_machine \
   -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml \
   -p 3000:3000 -p 9090:9090 -p 3100:3100 \
   monitoring-agent-kasi
