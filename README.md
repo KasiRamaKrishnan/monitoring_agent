@@ -33,7 +33,7 @@ This project provides a pre-packaged monitoring stack (Prometheus, Grafana, Loki
 
 ```bash
 git clone https://github.com/KasiRamaKrishnan/monitoring_agent.git
-cd monitoring-agent
+cd monitoring_agent
 ```
 
 #### 2. Make the script executable
